@@ -1,4 +1,3 @@
-
 # Complete the 'subscription_summary' function below.
 from __future__ import print_function
 

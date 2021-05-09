@@ -10,9 +10,9 @@ for key, value in gamedict.items():
 
 def initialize_board(player_options):
     board_nums = player_options[::-1]
-    player_row3 = create_row(board_nums[:3])
+    player_row1 = create_row(board_nums[:3])
     player_row2 = create_row(board_nums[3:6])
-    player_row1 = create_row(board_nums[6:])
+    player_row3 = create_row(board_nums[6:])
     border_row = ['------+-----+------']
 
     ordered_rows = [player_row1, border_row, player_row2, border_row, player_row3]

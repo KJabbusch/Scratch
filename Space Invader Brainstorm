@@ -1,0 +1,99 @@
+Space Invader Brainstorm
+
+- Initalize boundaries for the game (perimeter player/enemies cannot move beyond)
+- Initalize enemy, represented as "E" and its starting location in boundary
+    (you can later figure out how to create enemies that move in formation?)
+- Initalize player, represented as "P" and its starting location in boundary
+
+- Create a method that automatically moves the enemy left/right
+    (you can later match this with a "timer" rather than forcing enemy and player to move in "sync")
+
+- Create a method that allows & validates input from user to move player left/right using arrow keys
+    (need to check how to validate arrow key inputs...)
+
+* Can I figure out how to use "dynamic update in-place terminal text" rather than print every move?
+
+game_on = True
+print("Welcome to Cosmos Raiders.\nEnter 'Q' to quit anytime.")
+user_input = input("Enter some input here: ")
+
+# the playable spaces (20x10)
+width = 20
+height = width//2
+
+# the boundary: "+2" for vertical/horizontal boundary
+boundary_width = width + 2 
+boundary_height = height + 2
+
+# we create enemy location
+enemy_x = width//2
+enemy_y = height//2
+
+# we need to keep track of how far enemy can move
+# we -1 because enemy cannot be ON boundary, must be INSIDE
+enemy_right_space = (boundary-width[1] - enemy_x_position) - 1
+enemy_left_space = enemy_x_position - 1
+
+enemy_direction = "left"
+
+enemy_moves = 0
+if enemy_direction == "left":
+    # randint starts w/ 1 because the enemy should move at least +1
+    enemy_moves = (random.randint(1, enemy_left_space))
+else:
+    enemy_moves = random.randint(1, enemy_right_space)
+
+
+Let's first just imagine what the game looks like when you start with just an enemy:
+______________________
+|                    |
+|                    |
+|                    |
+|                    |
+|         E          |
+|                    |
+|                    |
+|                    |
+|                    |
+|                    |
+----------------------
+
+How can we iterate to first create a printout of the game boundary?
+
+We could implement a dictionary where:
+    we refer to each row as a key (0, 1, 2...) where 0 is the top row
+    each key has a list of all elements in the row (border, spaces)
+    So...
+        the y-coordinates refer to the key value
+        and the x-coordinates refer to the list index
+
+We know that the first and last row's list elements are ALL "-"
+We know that the "inner" rows first and last index are "|"
+
+top_border = []
+for x in range(boundary_width):
+    top_border.append["_"]
+
+bottom_border = 
+    for x in range(boundary_width):
+        bottom_border.append["-"]
+
+center_row = []
+    for x in range(boundary_width):
+        center_rows.append[" "]
+center_rows[0] = "|"
+center_rows[-1] = "|"
+
+gameboard = {}
+
+for x in range(boundary_height, 0):
+    if x == 0:
+        gameboard[x] = top_border
+    elif x < boundary_height:
+        gameboard[x] =  center_row
+    else:
+        gameboard[x] = bottom_border
+
+
+
+

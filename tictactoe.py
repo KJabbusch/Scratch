@@ -1,12 +1,8 @@
 import sys
 
-gamedict = {}
-for x in range(1, 10):
-    gamedict[x] = ' '
-
 player_options = []
-for key, value in gamedict.items():
-    player_options.append(key)
+for x in range(1,10):
+    player_options.append(x)
 
 def initialize_board(player_options):
     board_nums = player_options[::-1]

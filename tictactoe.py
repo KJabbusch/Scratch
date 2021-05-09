@@ -45,14 +45,14 @@ def validate_input():
         validate_input()
     return ask
 
-def place_player(player_input, boardgame, player):
+def place_marker(input_number, boardgame, marker):
     for x in range(7):
-        if boardgame[0][x] == player_input:
-            boardgame[0][x] = player
-        elif boardgame[2][x] == player_input:
-            boardgame[2][x] = player
-        elif boardgame[4][x] == player_input:
-            boardgame[4][x] = player
+        if boardgame[0][x] == input_number:
+            boardgame[0][x] = marker
+        elif boardgame[2][x] == input_number:
+            boardgame[2][x] = marker
+        elif boardgame[4][x] == input_number:
+            boardgame[4][x] = marker
 
     return boardgame
 
@@ -89,25 +89,24 @@ def play():
     print("Welcome to Tic Tac Toe.")
     print_board(boardgame)
     print("The numbers indicate positions on the board.")
-    print("You will be prompted to enter which number position you want to place your marker (X or O).")
+    print("You will be prompted to enter which number position you want to place your marker (X or O).\n")
     
     # Game ends on 9th move
     while turn_count <= 8:
-        # Quickest win can only happen in 5 turns
-        if turn_count >= 5:
-            winner = check_winner(boardgame)
-            if winner:
-                print(f"Yay {winner} won!")
-                
-                valid_response = ['Y', 'y', 'N', 'n']
+        winner = check_winner(boardgame)
+        if winner:
+            print(f"Yay {winner} won!")
+            
+            valid_response = ['Y', 'y', 'N', 'n']
+            play_again = input("Do you wish to play again? Y/N ").strip()
+            while play_again not in valid_response:
                 play_again = input("Do you wish to play again? Y/N ").strip()
-                while play_again not in valid_response:
-                    play_again = input("Do you wish to play again? Y/N ").strip()
-                if play_again.lower() == 'y':
+            if play_again.lower() == 'y':
                     print()
                     play()
-                else:
-                    sys.exit()
+            else:
+                sys.exit()
+
         else:
             if player == "X":
                 print("Player X's turn!")
@@ -119,13 +118,13 @@ def play():
                     print("Sorry, that spot is taken! Try again.")
                     make_move = validate_input()
 
-                boardgame = place_player(make_move, boardgame, player)
+                boardgame = place_marker(make_move, boardgame, player)
                 print_board(boardgame)
 
                 remaining_spots.remove(make_move)
                 player = "O"
                 turn_count += 1
-
+            
             else:
                 print("Player O's turn!")
                 print("\nYou can move to: ", end="")
@@ -136,7 +135,7 @@ def play():
                     print("Sorry, that spot is taken! Try again.")
                     make_move = validate_input()
 
-                boardgame = place_player(make_move, boardgame, player)
+                boardgame = place_marker(make_move, boardgame, player)
                 print_board(boardgame)
 
                 remaining_spots.remove(make_move)

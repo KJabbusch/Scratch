@@ -14,18 +14,23 @@ def main():
     enemy_y = height//2 # this determines which KEY
     enemy_x = width//2  # this determines which INDEX of the list inside the VALUE
 
+    print("Welcome to Cosmos Raiders, the very awful knock-off version of Space Invaders.")
+    print("In this game, E stands for Enemy. And H stands for Hero (aka you, the player!)")
+
     gameboard = initialize_game(width, height, boundary_width, boundary_height, enemy_x, enemy_y)
     show_game(gameboard)
 
     enemy_direction = "left"
-    for x in range(5):
-        moving = enemy_moves(boundary_width, enemy_x, enemy_direction)
+    moving = enemy_moves(boundary_width, enemy_x, enemy_direction)
+    for x in range(10):
+        if x % 2 == 0:
+            enemy_direction = "right"
+        else:
+            enemy_direction = "left"
         new_gameboard = initialize_game(width, height, boundary_width, boundary_height, moving, enemy_y)
         show_game(new_gameboard)
-        if x % 2 == 1:
-            enemy_direction = "left"
-        else:
-            enemy_direction = "right"
+        moving = enemy_moves(boundary_width, moving, enemy_direction)
+        
 
 def initialize_game(width, height, boundary_width, boundary_height, enemy_x, enemy_y):
     top_border = []
@@ -65,26 +70,23 @@ def show_game(gameboard):
 
 def enemy_moves(boundary_width, enemy_x, enemy_direction):
     #We need to keep track of how far enemy can move.
-    #We -1 because enemy cannot be ON boundary, must be INSIDE.'''
+    #We -1/-2 because enemy cannot be ON boundary, must be INSIDE.'''
     enemy_left_space = enemy_x - 1
-    enemy_right_space = (boundary_width - enemy_x) - 1
-    print(enemy_direction)
-    print(enemy_left_space)
-    print(enemy_left_space)
+    enemy_right_space = (boundary_width - enemy_x) - 2
+    print(f"Enemy is able to move left {enemy_left_space} spaces.")
+    print(f"Enemy is able to move right {enemy_right_space} spaces.")
     
     if enemy_direction == "left":
         # randint starts w/ 1 because the enemy should move at least +1
         enemy_moves = random.randint(1, enemy_left_space)
-        print(enemy_moves)
+        print(f"Enemy will move {enemy_moves} to the {enemy_direction}.")
         # we subtract since we are moving left
         enemy_x = enemy_x - enemy_moves
-        enemy_direction = "right"
     else:
         enemy_moves = random.randint(1, enemy_right_space)
-        print(enemy_moves)
+        print(f"Enemy will move {enemy_moves} to the {enemy_direction}.")
         # we add since we are moving right
         enemy_x = enemy_x + enemy_moves
-        enemy_direction = "left"
 
     return enemy_x
 

@@ -1,7 +1,7 @@
 import sys
 
 gamedict = {}
-for x in range(9):
+for x in range(1, 10):
     gamedict[x] = ' '
 
 player_options = []

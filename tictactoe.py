@@ -17,21 +17,20 @@ def play():
     print("You will be prompted to enter which number position you want to place your marker (X or O).\n")
     
     # Game ends on 9th move
-    while turn_count <= 8:
+    while turn_count <= 9:
         winner = check_winner(boardgame)
         if winner:
             print(f"Yay {winner} won!")
-            
-            valid_response = ['Y', 'y', 'N', 'n']
-            play_again = input("Do you wish to play again? Y/N ").strip()
-            while play_again not in valid_response:
-                play_again = input("Do you wish to play again? Y/N ").strip()
-            if play_again.lower() == 'y':
-                    print()
-                    play()
+            ask_to_play()
+        elif turn_count == 9 and not winner:
+            print("It's a tie!")
+            again = ask_to_play()
+            if again == 'y':
+                boardgame = initialize_board(player_options)
+                print()
+                play()
             else:
-                sys.exit()
-
+                sys.exit()     
         else:
             if player == "X":
                 print("Player X's turn!")
@@ -137,5 +136,12 @@ def check_winner(boardgame):
         return boardgame[4][1]
     else:
         return None
-        
+
+def ask_to_play():
+    valid_response = ['Y', 'y', 'N', 'n']
+    play_again = input("Do you wish to play again? Y/N ").strip()
+    while play_again not in valid_response:
+        play_again = input("Do you wish to play again? Y/N ").strip()
+    return play_again
+
 play()

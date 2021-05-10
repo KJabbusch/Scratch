@@ -4,6 +4,69 @@ player_options = []
 for x in range(1,10):
     player_options.append(x)
 
+def play():
+    boardgame = initialize_board(player_options)
+
+    turn_count = 0
+    player = "X"
+    remaining_spots = player_options[:]
+
+    print("Welcome to Tic Tac Toe.")
+    print_board(boardgame)
+    print("The numbers indicate positions on the board.")
+    print("You will be prompted to enter which number position you want to place your marker (X or O).\n")
+    
+    # Game ends on 9th move
+    while turn_count <= 8:
+        winner = check_winner(boardgame)
+        if winner:
+            print(f"Yay {winner} won!")
+            
+            valid_response = ['Y', 'y', 'N', 'n']
+            play_again = input("Do you wish to play again? Y/N ").strip()
+            while play_again not in valid_response:
+                play_again = input("Do you wish to play again? Y/N ").strip()
+            if play_again.lower() == 'y':
+                    print()
+                    play()
+            else:
+                sys.exit()
+
+        else:
+            if player == "X":
+                print("Player X's turn!")
+                print("\nYou can move to: ", end="")
+                print(*remaining_spots)
+
+                make_move = validate_input()
+                while make_move not in remaining_spots:
+                    print("Sorry, that spot is taken! Try again.")
+                    make_move = validate_input()
+
+                boardgame = place_marker(make_move, boardgame, player)
+                print_board(boardgame)
+
+                remaining_spots.remove(make_move)
+                player = "O"
+                turn_count += 1
+            
+            else:
+                print("Player O's turn!")
+                print("\nYou can move to: ", end="")
+                print(*remaining_spots)
+
+                make_move = validate_input()
+                while make_move not in remaining_spots:
+                    print("Sorry, that spot is taken! Try again.")
+                    make_move = validate_input()
+
+                boardgame = place_marker(make_move, boardgame, player)
+                print_board(boardgame)
+
+                remaining_spots.remove(make_move)
+                player = "X"
+                turn_count += 1
+
 def initialize_board(player_options):
     board_nums = player_options[::-1]
     player_row1 = create_row(board_nums[:3])
@@ -74,67 +137,5 @@ def check_winner(boardgame):
         return boardgame[4][1]
     else:
         return None
-
-def play():
-    boardgame = initialize_board(player_options)
-
-    turn_count = 0
-    player = "X"
-    remaining_spots = player_options[:]
-
-    print("Welcome to Tic Tac Toe.")
-    print_board(boardgame)
-    print("The numbers indicate positions on the board.")
-    print("You will be prompted to enter which number position you want to place your marker (X or O).\n")
-    
-    # Game ends on 9th move
-    while turn_count <= 8:
-        winner = check_winner(boardgame)
-        if winner:
-            print(f"Yay {winner} won!")
-            
-            valid_response = ['Y', 'y', 'N', 'n']
-            play_again = input("Do you wish to play again? Y/N ").strip()
-            while play_again not in valid_response:
-                play_again = input("Do you wish to play again? Y/N ").strip()
-            if play_again.lower() == 'y':
-                    print()
-                    play()
-            else:
-                sys.exit()
-
-        else:
-            if player == "X":
-                print("Player X's turn!")
-                print("\nYou can move to: ", end="")
-                print(*remaining_spots)
-
-                make_move = validate_input()
-                while make_move not in remaining_spots:
-                    print("Sorry, that spot is taken! Try again.")
-                    make_move = validate_input()
-
-                boardgame = place_marker(make_move, boardgame, player)
-                print_board(boardgame)
-
-                remaining_spots.remove(make_move)
-                player = "O"
-                turn_count += 1
-            
-            else:
-                print("Player O's turn!")
-                print("\nYou can move to: ", end="")
-                print(*remaining_spots)
-
-                make_move = validate_input()
-                while make_move not in remaining_spots:
-                    print("Sorry, that spot is taken! Try again.")
-                    make_move = validate_input()
-
-                boardgame = place_marker(make_move, boardgame, player)
-                print_board(boardgame)
-
-                remaining_spots.remove(make_move)
-                player = "X"
-                turn_count += 1
+        
 play()

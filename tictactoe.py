@@ -21,7 +21,13 @@ def play():
         winner = check_winner(boardgame)
         if winner:
             print(f"Yay {winner} won!")
-            ask_to_play()
+            again = ask_to_play()
+            if again == 'y':
+                boardgame = initialize_board(player_options)
+                print()
+                play()
+            else:
+                sys.exit()
         elif turn_count == 9 and not winner:
             print("It's a tie!")
             again = ask_to_play()

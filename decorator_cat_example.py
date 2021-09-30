@@ -1,3 +1,5 @@
+from lion_decorator import Lion
+
 def cat_named_nathan(sound_function):
     def nathan_says():
         print("Nathan says ")
@@ -12,5 +14,7 @@ def meow():
 def hiss():
     print("hissssss")
 
-meow()
-hiss()
+#print(Lion.kingdom())
+my_friendly_lion = Lion.create_friendly_lion()
+print(my_friendly_lion.sound)
+print(my_friendly_lion)

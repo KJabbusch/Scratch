@@ -113,8 +113,8 @@ def summarize_accounts(accounts):
         print(*top_accounts_list, sep = ", ")
 
 #Testing the method:
-months_subscribed = [7,3,7]
-ad_free_months = [2,3,2]
-video_on_demand_purchases = [1,0,1]
+months_subscribed = (10, 2, 3, 9, 1, 5, 4, 3)
+ad_free_months = (2, 3, 1, 3, 4, 30, 5, 7)
+video_on_demand_purchases = (3, 1, 7, 9, 9, 6, 3, 5)
 
 subscription_summary(months_subscribed, ad_free_months, video_on_demand_purchases)

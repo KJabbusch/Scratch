@@ -1,0 +1,52 @@
+Adding a computer player to the game:
+
+player = "X"
+computer = "O"
+turn = user
+
+Ask the user if they want to go first
+    if no:
+        player = "O"
+        computer = "X"
+        turn = computer
+
+if turn == user:
+    Player's turn
+    make move and place player
+    turn = computer
+
+else:
+    Computer's turn
+    make_move = remaining_spots[random.randint(0, len(remaining_spots))]
+    boardgame = place_player(make_move, boardgame, computer)
+
+
+__________ Computer's Rules for Winning __________
+Computer = X:
+
+FIRST MOVE:
+    select a RANDOM corner
+
+SECOND MOVE if opponent does not take center (COMPUTER WILL WIN):
+    check for if vertical or horizontal row you are in is empty
+        if both empty, pick random corner
+        if one occupied, pick corner in empty row
+
+    THIRD MOVE:
+        if opponent doesn't block:
+            complete row and win
+        if opponent blocks:
+            go to opposite corner
+
+    FOURTH MOVE:
+        complete row without opponent
+
+SECOND MOVE if opponent takes center (COMPUTER TIES OR WINS):
+    go to diagonal corner
+
+    THIRD MOVE:
+        if opponent goes to corner:
+            take opposite corner (WIN)
+        if opponent goes to middle square:
+            keep blocking (TIE)
+

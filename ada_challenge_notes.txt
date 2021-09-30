@@ -1,0 +1,143 @@
+
+
+
+
+
+
+
+
+
+
+
+
+try will test my functions for errors
+
+except says how to handle those errors (print them)
+
+
+
+
+
+def validate_inputs
+
+checking the length of each TUPLE
+
+(zip can be used for parallel iteration, it takes the shortest)
+for each element of each tuple
+
+checking that each element is an int
+
+
+checking that each element is bigger than 0
+
+
+def run_report():
+customers_dict is a dictionary (customer_id: list of all purchases associated)
+customers is a list of references to the each Account object
+we pass customers through the calculate/print functions
+
+end_summary is a TUPLE (total_profit, delivery_profit, top_account_value, top_accounts)
+print function that uses the tuple index for each printed line
+
+def make_customers_dict:
+we can use any of the inputs since we know they are identical in length
+create empty dictionary
+
+create a loop that creates/stores customers
+    KEY: +1 since Python indexes at zero, VALUE: a list with all customer purchases with that customer's index
+
+returns a complete dictionary of all customers
+
+def generate_accounts (takes the dictionary as input):
+
+create empty list
+>>>> items() returns a 'view object' that contains the key-value pairs of the dictionary, as tuples in a list.
+for each key, value in the customer dictionary, 
+    run the customer_id (key) and purchases (value) through Account class and store object address/reference in variable
+    append this object address/reference to the list
+
+return the list
+
+def calculate_and_print...
+    for each address/reference in the all_accounts list:
+        calls Account's calculate function
+        call's Account's print function
+
+class Account:
+    (class is a blueprint for creating instances)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    modulus function will return remainder for single orders
+    bundle will always be a solid integer since we substract the single orders
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+f is a fixed point notation, and I specify to show 2 decimal places
+{} are placeholders, and inside I can place format specifers
+
+
+
+
+
+
+
+
+get_end_calculation
+>>>> note: I might have accidentally put self here when it is not necessary
+create an attribute binded to instance called delivery and rush
+I have to convert to string bc Python cannot concatenate different types
+
+returns spending_breakdown list
+
+calculate_end_summary (takes in the list of all account object/instance references)
+create dictionary for total spending
+create dictionary for total delivery
+
+for each address in accounts list
+    store the returned spending_breakdown list in variable
+
+    
+
+
+    add into total spending dictionary KEY customer_index and VALUE total_spending
+    add into total delivery dictionary KEY customer_index and VALUE total_delivery
+
+create total_profit variable
+for each customer in the total spending dictionary:
+    add the customer's total spent to total_profit
+
+create delivery profit variable
+for each customer in the total_delivery dictionary:
+    add the customer's delivery_spent to delivery_profit
+
+store the highest value found in total_spending dictionary
+searching through all keys/values in total_spending dictionary, store keys (customer_id) that match top_account_value as a list
+
+returns a tuple 
+
+print_end_summary(takes in the tuple called end_summary)
